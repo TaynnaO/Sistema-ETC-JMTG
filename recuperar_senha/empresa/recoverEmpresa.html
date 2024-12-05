@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles_login.css" />
+</head>
+<header class="header">
+    <a href="../../index.html" class="logo"><span>JMTG</span>Service</a>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <a href="../../index.html">Inicio</a>
+        <a href="#about">Sobre</a>
+        <a href="../../view/empresa/cadastroEmpresa.php">Cadastrar</a>
+    </nav>
+        </header>
+
+        <div class="container">
+            <h2>Recuperar Senha</h2>
+            <form id="recoverForm" action="recoverEmpresa.php" method="POST">
+                <label for="Email">Email cadastrado:</label>
+                <input type="email" id="Email" name="Email" required>
+                <button type="submit">Enviar Código de Recuperação</button>
+            </form>
+            <p><a href="../../view/empresa/loginEmpresa.php">Voltar ao login</a></p>
+        </div>
+    </body>
+</html>
