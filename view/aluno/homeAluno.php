@@ -31,12 +31,12 @@ if ($conn->connect_error) {
 }
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["Matricula"])) {
   header("Location: \auth\loginAluno.php");
   exit;
 }
 
-$id_do_usuario = $_SESSION["user_id"];
+$Matricula = $_SESSION["Matricula"];
 
 // Busca os dados do usuário no banco de dados
 $sql = "SELECT * FROM `aluno` WHERE Matricula = $Matricula and foto is not null";
@@ -135,7 +135,7 @@ $password = "";
 $dbname = "jmtg_service";
 
 
-$conn = new mysqli($servername, $username, $Senha, $dbname);
+$conn = new mysqli($servername, $Matricula, $Senha, $dbname);
 
 
 if ($conn->connect_error) {
