@@ -1,0 +1,27 @@
+footer {
+    margin-top: 3em;
+    text-align: center;
+    a {
+        color: var(--main-color);
+    }
+}
+
+.footer {
+    background-color: #6396d8;
+    padding: 15px;
+    position: center; 
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content p {
+    font-family: OCR A Std, monospace; 
+    font-size: 25px; 
+    color: #030253;
+}
