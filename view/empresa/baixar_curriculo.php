@@ -7,17 +7,17 @@ $username = "root";
 $password = "";
 $dbname = "jmtg_service";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $ID, $Senha, $dbname);
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["ID"])) {
     header("Location: ..\login.php");
     exit;
 }
 
-$id_do_usuario = $_SESSION["user_id"];
+$ID = $_SESSION["ID"];
 $idcurriculo = $_GET["id"];
 $sql = "SELECT curriculo FROM cadastro WHERE id = $idcurriculo";
 $result = $conn->query($sql);
