@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Currículo</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #003366; /* Fundo azul escuro */
+            color: white; /* Texto branco */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #1a1a1a; /* Fundo mais claro para o formulário */
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+            background-color: #333333; /* Fundo escuro para campos */
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #0066cc; /* Cor de destaque ao focar nos campos */
+        }
+
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+        }
+
+        /* Tabela estilizada */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background-color: #003366; /* Cor de fundo dos cabeçalhos */
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            background-color: #333333;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #444444; /* Alterna as cores das linhas da tabela */
+        }
+
+        tr:hover td {
+            background-color: #0055a5; /* Cor ao passar o mouse nas linhas */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Formulário de Currículo</h1>
+
+        <!-- Formulário de Currículo -->
+        <form action="processar_curriculo.php" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" id="telefone" name="telefone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sobre_mim">Sobre Mim</label>
+                <textarea id="sobre_mim" name="sobre_mim" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="atividades_extracurriculares">Atividades Extracurriculares</label>
+                <textarea id="atividades_extracurriculares" name="atividades_extracurriculares" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="interesses_profissionais">Interesses Profissionais</label>
+                <textarea id="interesses_profissionais" name="interesses_profissionais" rows="4"></textarea>
+            </div>
+
+            <!-- Seção de Cursos -->
+            <div class="form-group">
+                <label for="curso">Cursos</label>
+                <div id="cursoContainer">
+                    <div class="cursoItem">
+                        <input type="text" name="curso[]" placeholder="Nome do curso" required>
+                        <input type="text" name="instituicao[]" placeholder="Instituição" required>
+                        <input type="text" name="ano_conclusao[]" placeholder="Ano de Conclusão" required>
+                    </div>
+                </div>
+                <button type="button" onclick="adicionarCurso()">Adicionar Curso</button>
+            </div>
+
+            <!-- Seção de Experiência Profissional -->
+            <div class="form-group">
+                <label for="experiencia">Experiência Profissional</label>
+                <div id="experienciaContainer">
+                    <div class="experienciaItem">
+                        <input type="text" name="empresa[]" placeholder="Empresa" required>
+                        <input type="text" name="funcao[]" placeholder="Função" required>
+                        <input type="text" name="periodo[]" placeholder="Período" required>
+                        <textarea name="atividade[]" placeholder="Atividades desenvolvidas" rows="4"></textarea>
+                    </div>
+                </div>
+                <button type="button" onclick="adicionarExperiencia()">Adicionar Experiência</button>
+            </div>
+
+            <!-- Seção de Formação Acadêmica -->
+            <div class="form-group">
+                <label for="formacao">Formação Acadêmica</label>
+                <div id="formacaoContainer">
+                    <div class="formacaoItem">
+                        <input type="text" name="formacao_curso[]" placeholder="Nome do Curso" required>
+                        <input type="text" name="formacao_instituicao[]" placeholder="Instituição" required>
+                        <input type="text" name="formacao_ano_conclusao[]" placeholder="Ano de Conclusão" required>
+                    </div>
+                </div>
+                <button type="button" onclick="adicionarFormacao()">Adicionar Formação</button>
+            </div>
+
+            <button type="submit">Enviar Currículo</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Seu Nome - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Funções JavaScript para adicionar novos campos dinamicamente
+        function adicionarCurso() {
+            const container = document.getElementById('cursoContainer');
+            const novoCurso = document.createElement('div');
+            novoCurso.classList.add('cursoItem');
+            novoCurso.innerHTML = `
+                <input type="text" name="curso[]" placeholder="Nome do curso" required>
+                <input type="text" name="instituicao[]" placeholder="Instituição" required>
+                <input type="text" name="ano_conclusao[]" placeholder="Ano de Conclusão" required>
+            `;
+            container.appendChild(novoCurso);
+        }
+
+        function adicionarExperiencia() {
+            const container = document.getElementById('experienciaContainer');
+            const novaExperiencia = document.createElement('div');
+            novaExperiencia.classList.add('experienciaItem');
+            novaExperiencia.innerHTML = `
+                <input type="text" name="empresa[]" placeholder="Empresa" required>
+                <input type="text" name="funcao[]" placeholder="Função" required>
+                <input type="text" name="periodo[]" placeholder="Período" required>
+                <textarea name="atividade[]" placeholder="Atividades desenvolvidas" rows="4"></textarea>
+            `;
+            container.appendChild(novaExperiencia);
+        }
+
+        function adicionarFormacao() {
+            const container = document.getElementById('formacaoContainer');
+            const novaFormacao = document.createElement('div');
+            novaFormacao.classList.add('formacaoItem');
+            novaFormacao.innerHTML = `
+                <input type="text" name="formacao_curso[]" placeholder="Nome do Curso" required>
+                <input type="text" name="formacao_instituicao[]" placeholder="Instituição" required>
+                <input type="text" name="formacao_ano_conclusao[]" placeholder="Ano de Conclusão" required>
+            `;
+            container.appendChild(novaFormacao);
+        }
+    </script>
+
+</body>
+</html>
